@@ -6,7 +6,7 @@
 			compatible = "fixed-clock";
 		};
 
-		&spi1{
+		&spi1 {
 			adc_clk: ad9517@1 {
 				compatible = "adi,ad9517-4";
 				clocks = <0x7 0x7>;
@@ -51,7 +51,6 @@
 					};
 				};
 		};
-
 
 	};
 
