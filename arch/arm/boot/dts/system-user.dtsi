@@ -5,8 +5,18 @@
 	
 	&amba {
 
-		&spi0 {
-			status = "okay";
+		/delete-node/ spi@e0006000;
+
+		spi0: spi@e0006000 {
+			compatible = "xlnx,zynq-spi-r1p6";
+			reg = <0xe0006000 0x1000>;
+			status = okay";
+			interrupt-parent = <&intc>;
+			interrupts = <0 26 4>;
+			clocks = <&clkc 25>, <&clkc 34>;
+			clock-names = "ref_clk", "pclk";
+			#address-cells = <1>;
+			#size-cells = <0>;
 
 			adc_clk: ad9517@1 {
 				compatible = "adi,ad9517-4";
