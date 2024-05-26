@@ -63,9 +63,9 @@
 					dma-channel@0 {
 						reg = <0>;
 						adi,source-bus-width = <16>;
-						adi,source-bus-type = <AXI_DMAC_TYPE_AXI_FIFO>;
+						adi,source-bus-type = <AXI_DMAC_BUS_TYPE_FIFO>;
 						adi,destination-bus-width = <64>;
-						adi,destination-bus-type = <AXI_DMAC_TYPE_AXI_MM>;
+						adi,destination-bus-type = <AXI_DMAC_BUS_TYPE_AXI_MM>;
 					};
 				};
 		};
