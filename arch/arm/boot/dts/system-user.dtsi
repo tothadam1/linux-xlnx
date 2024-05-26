@@ -1,3 +1,4 @@
+#include <dma/axi-dmac.h>
 /include/ "system-conf.dtsi"
 / {
 
