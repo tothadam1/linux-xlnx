@@ -2,8 +2,9 @@
 / {
 		/delete-property/ spi0;
 		/delete-property/ spi1;
-	&amba{
-		
+	
+	&amba {
+
 		&spi0 {
 			status = "okay";
 
