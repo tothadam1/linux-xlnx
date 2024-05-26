@@ -2,15 +2,10 @@
 / {
 		/delete-property/ spi0;
 		/delete-property/ spi1;
-
-		adc_clk: adc_clk_0 {
-			#clock-cells = <0>;
-			clock-frequency = <250000000>;
-			compatible = "fixed-clock";
-		};
-
+	&amba{
+		
 		&spi0 {
-			status="okay";
+			status = "okay";
 
 			adc_clk: ad9517@1 {
 				compatible = "adi,ad9517-4";
@@ -21,7 +16,7 @@
 				#clock-cells = <0x1>;
 				reg = <0x1>;
 				clock-output-names = "out0", "out1", "out2", "adc-clk", "out4", "out5", "out6", "out7";			
-		};
+			};
 
 			adc@0 {
             	compatible = "adi,ad9467";
@@ -30,6 +25,7 @@
             	clock-names = "adc-clk";
             	io-backends = <&iio_backend>;
         	};		
+		};
 	};
 
 
