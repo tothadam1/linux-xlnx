@@ -43,11 +43,16 @@
 	&amba_pl {
 		//Delete ADC Node
 		/delete-node/ axi_ad9467@43c00000;
+		/delete-node/ axi_dmac@43c10000;
 
 		//Modification of DMAC node for analog driver
-		&axi_dmac_0{
+		axi_dmac_0: axi_dmac@43c10000 {
 				compatible = "adi,axi-dmac-1.00.a";
+				reg = <0x43c10000 0x10000>;
 				clocks = <&clkc 16>;
+				interrupt-names = "irq";
+				interrupt-parent = <&intc>;
+				interrupts = <0 29 4>;
 				#dma-cells = <1>;
 
 				adi,channels {
