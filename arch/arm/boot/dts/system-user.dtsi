@@ -35,7 +35,6 @@
             	reg = <0>;
             	clocks = <&adc_clk>;
             	clock-names = "adc-clk";
-            	io-backends = <&iio_backend>;
         	};		
 		};
 	};
@@ -68,6 +67,13 @@
 						adi,destination-bus-type = <AXI_DMAC_BUS_TYPE_AXI_MM>;
 					};
 				};
+
+		axi-adc@43c00000 {
+        	compatible = "adi,axi-adc-10.0.a";
+        	reg = <0x43c00000 0x10000>;
+        	dmas = <&axi_dmac_0>;
+        	dma-names = "rx";
+    	};
 		};
 
 	};
