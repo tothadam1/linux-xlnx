@@ -1,7 +1,9 @@
 /include/ "system-conf.dtsi"
 / {
-		/delete-property/ spi0;
-		/delete-property/ spi1;
+	
+};
+	/delete-property/ spi0;
+	/delete-property/ spi1;
 	
 	&amba {
 
@@ -56,4 +58,3 @@
 
 	};
 
-};
