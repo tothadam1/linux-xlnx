@@ -1,6 +1,58 @@
 /include/ "system-conf.dtsi"
 / {
-	chosen {
-		stdout-path = "serial0:115200";
+		adc_clk: adc_clk_0 {
+			#clock-cells = <0>;
+			clock-frequency = <250000000>;
+			compatible = "fixed-clock";
+		};
+
+		&spi1{
+			adc_clk: ad9517@1 {
+				compatible = "adi,ad9517-4";
+				clocks = <0x7 0x7>;
+				clock-names = "refclk", "clkin";
+				#address-cells = <0x1>;
+				#size-cells = <0x0>;
+				#clock-cells = <0x1>;
+				reg = <0x1>;
+				clock-output-names = "out0", "out1", "out2", "adc-clk", "out4", "out5", "out6", "out7";			
+		};
+
+			adc@0 {
+            	compatible = "adi,ad9467";
+            	reg = <0>;
+            	clocks = <&adc_clk>;
+            	clock-names = "adc-clk";
+            	io-backends = <&iio_backend>;
+        	};		
 	};
+
+
+	&amba_pl {
+		//Delete ADC Node
+		/delete-node/ axi_ad9467@43c00000;
+
+		//Modification of DMAC node for analog driver
+		&axi_dmac_0{
+				compatible = "adi,axi-dmac-1.00.a";
+				clocks = <&clkc 16>;
+				#dma-cells = <1>;
+
+				adi,channels {
+					#size-cells = <0>;
+					#address-cells = <1>;
+
+					dma-channel@0 {
+						reg = <0>;
+						adi,source-bus-width = <16>;
+						adi,source-bus-type = <AXI_DMAC_TYPE_AXI_FIFO>;
+						adi,destination-bus-width = <64>;
+						adi,destination-bus-type = <AXI_DMAC_TYPE_AXI_MM>;
+					};
+				};
+		};
+
+
+	};
+
 };
