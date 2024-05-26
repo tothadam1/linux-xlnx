@@ -1,12 +1,17 @@
 /include/ "system-conf.dtsi"
 / {
+		/delete-property/ spi0;
+		/delete-property/ spi1;
+
 		adc_clk: adc_clk_0 {
 			#clock-cells = <0>;
 			clock-frequency = <250000000>;
 			compatible = "fixed-clock";
 		};
 
-		&spi1 {
+		&spi0 {
+			status="okay";
+
 			adc_clk: ad9517@1 {
 				compatible = "adi,ad9517-4";
 				clocks = <0x7 0x7>;
